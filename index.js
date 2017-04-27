@@ -40,7 +40,7 @@ restService.post('/myecho', function(req, res) {
 //             }],
 
 //             "thumb_url": "https://stiltsoft.com/blog/wp-content/uploads/2016/01/5.jira_.png"
-//         }, {
+///        }, {
 //             "title": "Story status count",
 //             "title_link": "http://www.google.com",
 //             "color": "#f49e42",
