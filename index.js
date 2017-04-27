@@ -5,6 +5,18 @@ const bodyParser = require('body-parser');
 
 const restService = express();
 
+ var config = {
+        apiKey: "AIzaSyB3hhlOYw5iVfxz_ac6e2mz4FIgbL0gifE",
+        authDomain: "echo-8abf0.firebaseapp.com",
+        databaseURL: "https://echo-8abf0.firebaseio.com",
+        projectId: "echo-8abf0",
+        storageBucket: "echo-8abf0.appspot.com",
+        messagingSenderId: "689817280332"
+    };
+    firebase.initializeApp(config);
+
+ 
+
 restService.use(bodyParser.urlencoded({
     extended: true
 }));
@@ -18,6 +30,11 @@ restService.post('/myecho', function(req, res) {
         displayText: speech,
         source: 'echo-web-wook'
     });
+
+//    var bigOne = document.getElementById('bigOne');
+    var dbRef = firebase.database().ref().child('text');
+    dbRef.on('value', snap => speech.innerText = snap.val());
+
 });
 
 
