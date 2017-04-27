@@ -20,7 +20,6 @@ restService.post('/myecho', function(req, res) {
     });
 });
 
-
 // restService.post('/slack-test', function(req, res) {
 
 //     var slack_message = {
@@ -41,7 +40,7 @@ restService.post('/myecho', function(req, res) {
 //             }],
 
 //             "thumb_url": "https://stiltsoft.com/blog/wp-content/uploads/2016/01/5.jira_.png"
-///        }, {
+//         }, {
 //             "title": "Story status count",
 //             "title_link": "http://www.google.com",
 //             "color": "#f49e42",
@@ -74,6 +73,9 @@ restService.post('/myecho', function(req, res) {
 //         }
 //     });
 // });
+
+
+
 
 restService.listen((process.env.PORT || 8000), function() {
     console.log("Server up and listening");
