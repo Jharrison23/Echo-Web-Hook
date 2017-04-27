@@ -31,13 +31,19 @@ restService.post('/myecho', function(req, res) {
         source: 'echo-web-wook'
     });
 
-//    var bigOne = document.getElementById('bigOne');
-    var dbRef = firebase.database().ref().child('text');
-    dbRef.on('value', snap => speech.innerText = snap.val());
+    writeUserData(speech);
+
+// //    var bigOne = document.getElementById('bigOne');
+//     var dbRef = firebase.database().ref().child('text');
+//     dbRef.on('value', snap => speech.innerText = snap.val());
 
 });
 
-
+function writeUserData(speechText) {
+  firebase.database().ref('AnaBot/' + userId).set({
+    text: speechText
+  });
+}
 
 restService.listen((process.env.PORT || 8000), function() {
     console.log("Server up and listening");
