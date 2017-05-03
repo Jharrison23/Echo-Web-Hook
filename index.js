@@ -8,6 +8,26 @@ const bodyParser = require('body-parser');
 
 const restService = express();
 
+var firebase = require('firebase');
+
+firebase.initializeApp({
+
+    serviceAccount: "./echo-service-account.json",
+    databaseURL: "https://echo-8abf0.firebaseio.com/"
+});
+
+
+var ref = firebase.database().ref('AnaBot');
+
+// var messagesRef = ref.child('messages');
+
+// messagesRef.push({
+//     name: 'James',
+//     admin:true,
+//     count: 1,
+//     text:'Hello'
+// });
+
 //  var config = {
 //         apiKey: "AIzaSyB3hhlOYw5iVfxz_ac6e2mz4FIgbL0gifE",
 //         authDomain: "echo-8abf0.firebaseapp.com",
@@ -28,11 +48,28 @@ restService.use(bodyParser.json());
 
 restService.post('/myecho', function(req, res) {
     var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.echoText ? req.body.result.parameters.echoText : "Seems like some problem. Speak again."
+    
+    var messagesRef = ref.child('messages');
+
+
+    
     return res.json({
         speech: speech,
         displayText: speech,
         source: 'echo-web-wook'
+
+
+        
     });
+
+    messagesRef.push({
+        name: 'echoed speech',
+        admin:true,
+        count: 2,
+        text: speech
+    });
+
+
 
   //  writeUserData(speech);
 

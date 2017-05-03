@@ -7,8 +7,8 @@
   },
   "author": "James Harrison",
   "dependencies": {
-    "body-parser": "^1.15.0",
-    "express": "^4.13.4",
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
     "firebase": "^3.9.0"
   },
   "description": "[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)",
