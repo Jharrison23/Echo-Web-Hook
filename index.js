@@ -19,14 +19,14 @@ firebase.initializeApp({
 
 var ref = firebase.database().ref('AnaBot');
 
-// var messagesRef = ref.child('messages');
+var messagesRef = ref.child('messages');
 
-// messagesRef.push({
-//     name: 'James',
-//     admin:true,
-//     count: 1,
-//     text:'Hello'
-// });
+messagesRef.push({
+    name: 'Not JAmes',
+    admin:true,
+    count: 1,
+    text:'Hello'
+});
 
 //  var config = {
 //         apiKey: "AIzaSyB3hhlOYw5iVfxz_ac6e2mz4FIgbL0gifE",
@@ -51,6 +51,12 @@ restService.post('/myecho', function(req, res) {
     
     var messagesRef = ref.child('messages');
 
+    messagesRef.push({
+        name: 'echoed speech',
+        admin:true,
+        count: 2,
+        text: speech
+    });
 
     
     return res.json({
@@ -62,12 +68,7 @@ restService.post('/myecho', function(req, res) {
         
     });
 
-    messagesRef.push({
-        name: 'echoed speech',
-        admin:true,
-        count: 2,
-        text: speech
-    });
+    
 
 
 
