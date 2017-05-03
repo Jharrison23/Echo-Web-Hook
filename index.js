@@ -50,7 +50,8 @@ restService.use(bodyParser.json());
 restService.post('/myecho', function(req, res) {
     var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.echoText ? req.body.result.parameters.echoText : "Seems like some problem. Speak again."
     
-
+    // Pushes the text from the user to the firebase database
+    // pushes into the the AnaBot -> Messages table.
     messagesRef.push({
         name: 'echoed speech',
         admin:true,
