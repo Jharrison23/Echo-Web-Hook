@@ -8,6 +8,17 @@
   "author": "James Harrison",
   "dependencies": {
     "body-parser": "^1.15.0",
-    "express": "^4.13.4"
-  }
+    "express": "^4.13.4",
+    "firebase": "^3.9.0"
+  },
+  "description": "[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jharrison23/Echo-Web-Hook.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jharrison23/Echo-Web-Hook/issues"
+  },
+  "homepage": "https://github.com/Jharrison23/Echo-Web-Hook#readme"
 }

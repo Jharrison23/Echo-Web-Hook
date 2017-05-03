@@ -1,19 +1,22 @@
 'use strict';
-//
+
+
+
+
 const express = require('express');
 const bodyParser = require('body-parser');
 
 const restService = express();
 
- var config = {
-        apiKey: "AIzaSyB3hhlOYw5iVfxz_ac6e2mz4FIgbL0gifE",
-        authDomain: "echo-8abf0.firebaseapp.com",
-        databaseURL: "https://echo-8abf0.firebaseio.com",
-        projectId: "echo-8abf0",
-        storageBucket: "echo-8abf0.appspot.com",
-        messagingSenderId: "689817280332"
-    };
-    firebase.initializeApp(config);
+//  var config = {
+//         apiKey: "AIzaSyB3hhlOYw5iVfxz_ac6e2mz4FIgbL0gifE",
+//         authDomain: "echo-8abf0.firebaseapp.com",
+//         databaseURL: "https://echo-8abf0.firebaseio.com",
+//         projectId: "echo-8abf0",
+//         storageBucket: "echo-8abf0.appspot.com",
+//         messagingSenderId: "689817280332"
+//     };
+//     firebase.initializeApp(config);
 
  
 
@@ -31,7 +34,7 @@ restService.post('/myecho', function(req, res) {
         source: 'echo-web-wook'
     });
 
-    writeUserData(speech);
+  //  writeUserData(speech);
 
 // //    var bigOne = document.getElementById('bigOne');
 //     var dbRef = firebase.database().ref().child('text');
@@ -39,11 +42,11 @@ restService.post('/myecho', function(req, res) {
 
 });
 
-function writeUserData(speechText) {
-  firebase.database().ref('AnaBot/' + userId).set({
-    text: speechText
-  });
-}
+// function writeUserData(speechText) {
+//   firebase.database().ref('AnaBot/' + userId).set({
+//     text: speechText
+//   });
+// }
 
 restService.listen((process.env.PORT || 8000), function() {
     console.log("Server up and listening");
