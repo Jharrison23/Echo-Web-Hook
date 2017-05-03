@@ -17,10 +17,10 @@ firebase.initializeApp({
 });
 
 
-var ref = firebase.database().ref('AnaBot');
+var ref = firebase.database().ref('EchoBot');
 
 
-var messagesRef = ref.child('messages');
+var messagesRef = ref.child('User Speech');
 
 // messagesRef.push({
 //     name: 'Not JAmes',
@@ -48,15 +48,18 @@ restService.use(bodyParser.urlencoded({
 restService.use(bodyParser.json());
 
 restService.post('/myecho', function(req, res) {
-    var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.echoText ? req.body.result.parameters.echoText : "Seems like some problem. Speak again."
+    var speech = req.body.result && req.body.result.parameters && 
+                 req.body.result.parameters.echoText ? 
+                 req.body.result.parameters.echoText : "Seems like some problem. Speak again."
     
     // Pushes the text from the user to the firebase database
     // pushes into the the AnaBot -> Messages table.
+
+   // .push creates a push key, the push key shows up as the weird string
+   // under messages looks like an id, push keys are critical to firebase, 
+   // theyre like time stamps with alot of randomness to avoid collision
     messagesRef.push({
-        name: 'echoed speech',
-        admin:true,
-        count: 2,
-        text: speech
+        UserSent: speech
     });
 
     
