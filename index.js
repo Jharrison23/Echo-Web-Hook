@@ -2,7 +2,6 @@
 
 
 
-
 const express = require('express');
 const bodyParser = require('body-parser');
 
@@ -23,7 +22,7 @@ var ref = firebase.database().ref('EchoBot');
 var messagesRef = ref.child('User Speech');
 
 // messagesRef.push({
-//     name: 'Not JAmes',
+//     name: 'Not James',
 //     admin:true,
 //     count: 1,
 //     text:'Hello'
