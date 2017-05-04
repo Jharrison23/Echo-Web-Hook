@@ -1,7 +1,5 @@
 'use strict';
 
-
-
 const express = require('express');
 const bodyParser = require('body-parser');
 
@@ -65,9 +63,7 @@ restService.post('/myecho', function(req, res) {
     return res.json({
         speech: speech,
         displayText: speech,
-        source: 'echo-web-wook'
-
-
+        source: 'echo-web-hook'
         
     });
 
