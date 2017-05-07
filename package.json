@@ -9,7 +9,8 @@
   "dependencies": {
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
-    "firebase": "^3.9.0"
+    "firebase": "^3.9.0",
+    "firebase-admin": "^4.2.1"
   },
   "description": "[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)",
   "repository": {

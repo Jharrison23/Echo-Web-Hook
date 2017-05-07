@@ -5,11 +5,13 @@ const bodyParser = require('body-parser');
 
 const restService = express();
 
-var firebase = require('firebase');
+var firebase = require('firebase-admin');
+
+var serviceAccount = require("./echo-service-account.json");
 
 firebase.initializeApp({
-
-    serviceAccount: "./echo-service-account.json",
+    credential: firebase.credential.cert(serviceAccount),
+    //serviceAccount: "./echo-service-account.json",
     databaseURL: "https://echo-8abf0.firebaseio.com/"
 });
 
@@ -19,24 +21,13 @@ var ref = firebase.database().ref('EchoBot');
 
 var messagesRef = ref.child('User Speech');
 
-// messagesRef.push({
-//     name: 'Not James',
-//     admin:true,
-//     count: 1,
-//     text:'Hello'
-// });
+ ref.once('value')
+        .then(function(snapShot){
+            console.log("The key: " + snapShot.key, "\n\n");
+            console.log("The ref: " + snapShot.ref.toString(), "\n\n");
+            console.log(snapShot.val());
+        });
 
-//  var config = {
-//         apiKey: "AIzaSyB3hhlOYw5iVfxz_ac6e2mz4FIgbL0gifE",
-//         authDomain: "echo-8abf0.firebaseapp.com",
-//         databaseURL: "https://echo-8abf0.firebaseio.com",
-//         projectId: "echo-8abf0",
-//         storageBucket: "echo-8abf0.appspot.com",
-//         messagingSenderId: "689817280332"
-//     };
-//     firebase.initializeApp(config);
-
- 
 
 restService.use(bodyParser.urlencoded({
     extended: true
@@ -48,6 +39,7 @@ restService.post('/myecho', function(req, res) {
     var speech = req.body.result && req.body.result.parameters && 
                  req.body.result.parameters.echoText ? 
                  req.body.result.parameters.echoText : "Seems like some problem. Speak again."
+  
     
     // Pushes the text from the user to the firebase database
     // pushes into the the AnaBot -> Messages table.
@@ -59,7 +51,15 @@ restService.post('/myecho', function(req, res) {
         UserSent: speech
     });
 
-    
+
+    // ref.once('value')
+    //     .then(function(snapShot){
+    //         console.log(snapShot.key, "\n\n");
+    //         console.log(snapShot.ref.toString(), "\n\n");
+    //         console.log(snapShot.val(),"\n\n");
+    //     });
+
+
     return res.json({
         speech: speech,
         displayText: speech,
