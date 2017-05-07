@@ -88,12 +88,7 @@ restService.post('/myecho', function(req, res) {
 
 //---------------------------
 
-restService.post('/myecho', function sendMessage(req, res) {
-    var speech = req.body.result && req.body.result.parameters && 
-                 req.body.result.parameters.echoText ? 
-                 req.body.result.parameters.echoText : "Seems like some problem. Speak again."
-  
-    
+function sendMessage(){
     console.log("Helow world");
 
     messagesRef.push({
@@ -107,7 +102,7 @@ restService.post('/myecho', function sendMessage(req, res) {
         
     });
 
-});
+}
 
 
 
