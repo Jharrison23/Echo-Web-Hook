@@ -59,7 +59,15 @@ restService.post('/myecho', function(req, res) {
     //         console.log(snapShot.val(),"\n\n");
     //     });
 
-    sendMessage(speech);
+    sendMessage();
+
+res.json({
+        speech: "speech",
+       // displayText: speech,
+        source: 'echo-web-hook'
+        
+    });
+
 
     return res.json({
         speech: speech,
@@ -88,16 +96,26 @@ restService.post('/myecho', function(req, res) {
 
 //---------------------------
 
-function sendMessage(speech)
-{
+restService.post('/myecho', function sendMessage(req, res) {
+    var speech = req.body.result && req.body.result.parameters && 
+                 req.body.result.parameters.echoText ? 
+                 req.body.result.parameters.echoText : "Seems like some problem. Speak again."
+  
+    
+    console.log("Helow world");
+
+    messagesRef.push({
+        UserSent: "speech"
+    });
+
     return res.json({
-        speech: speech,
-        displayText: speech,
+        speech: "speech",
+       // displayText: speech,
         source: 'echo-web-hook'
         
     });
 
-}
+});
 
 
 
