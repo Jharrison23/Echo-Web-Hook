@@ -65,6 +65,7 @@ restService.post('/myecho', function(req, res) {
 
 function sendMessage()
 {
+    console.log("we out here");
     restService.post('/myecho', function(req, res) {
     var speech = req.body.result && req.body.result.parameters && 
                  req.body.result.parameters.echoText ? 
