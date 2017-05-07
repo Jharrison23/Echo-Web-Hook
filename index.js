@@ -11,7 +11,6 @@ var serviceAccount = require("./echo-service-account.json");
 
 firebase.initializeApp({
     credential: firebase.credential.cert(serviceAccount),
-    //serviceAccount: "./echo-service-account.json",
     databaseURL: "https://echo-8abf0.firebaseio.com/"
 });
 
@@ -21,6 +20,7 @@ var ref = firebase.database().ref('EchoBot');
 
 var messagesRef = ref.child('User Speech');
 
+// Method which returns the key, reference string, and the logs in the database
  ref.once('value')
         .then(function(snapShot){
             console.log("The key: " + snapShot.key, "\n\n");
@@ -52,13 +52,6 @@ restService.post('/myecho', function(req, res) {
     });
 
 
-    // ref.once('value')
-    //     .then(function(snapShot){
-    //         console.log(snapShot.key, "\n\n");
-    //         console.log(snapShot.ref.toString(), "\n\n");
-    //         console.log(snapShot.val(),"\n\n");
-    //     });
-
 
     return res.json({
         speech: speech,
@@ -66,24 +59,6 @@ restService.post('/myecho', function(req, res) {
         source: 'echo-web-hook'
         
     });
-
-    
-
-
-
-  //  writeUserData(speech);
-
-// //    var bigOne = document.getElementById('bigOne');
-//     var dbRef = firebase.database().ref().child('text');
-//     dbRef.on('value', snap => speech.innerText = snap.val());
-
-});
-
-// function writeUserData(speechText) {
-//   firebase.database().ref('AnaBot/' + userId).set({
-//     text: speechText
-//   });
-// }
 
 restService.listen((process.env.PORT || 8000), function() {
     console.log("Server up and listening");
