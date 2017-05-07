@@ -59,7 +59,7 @@ restService.post('/myecho', function(req, res) {
     //         console.log(snapShot.val(),"\n\n");
     //     });
 
-    sendMessage();
+    //sendMessage();
 
     return res.json({
         speech: speech,
@@ -88,21 +88,21 @@ restService.post('/myecho', function(req, res) {
 
 //---------------------------
 
-function sendMessage(){
-    console.log("Helow world");
+// function sendMessage(){
+//     console.log("Helow world");
 
-    messagesRef.push({
-        UserSent: "speech"
-    });
+//     messagesRef.push({
+//         UserSent: "speech"
+//     });
 
-    return res.json({
-        speech: "speech",
-       // displayText: speech,
-        source: 'echo-web-hook'
+//     return res.json({
+//         speech: "speech",
+//        // displayText: speech,
+//         source: 'echo-web-hook'
         
-    });
+//     });
 
-}
+// }
 
 
 
