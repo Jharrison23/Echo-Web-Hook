@@ -61,14 +61,6 @@ restService.post('/myecho', function(req, res) {
 
     sendMessage();
 
-res.json({
-        speech: "speech",
-       // displayText: speech,
-        source: 'echo-web-hook'
-        
-    });
-
-
     return res.json({
         speech: speech,
         displayText: speech,
