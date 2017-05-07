@@ -59,6 +59,7 @@ restService.post('/myecho', function(req, res) {
     //         console.log(snapShot.val(),"\n\n");
     //     });
 
+    sendMessage(speech);
 
     return res.json({
         speech: speech,
@@ -78,6 +79,29 @@ restService.post('/myecho', function(req, res) {
 //     dbRef.on('value', snap => speech.innerText = snap.val());
 
 });
+
+
+
+
+
+
+
+//---------------------------
+
+function sendMessage(speech)
+{
+    return res.json({
+        speech: speech,
+        displayText: speech,
+        source: 'echo-web-hook'
+        
+    });
+
+}
+
+
+
+
 
 // function writeUserData(speechText) {
 //   firebase.database().ref('AnaBot/' + userId).set({
