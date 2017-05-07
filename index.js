@@ -53,6 +53,10 @@ restService.post('/myecho', function(req, res) {
 
     sendMessage();
 
+    messagesRef.push({
+        ServerSent: "Server " + speech
+    });
+
     return res.json({
         speech: speech,
         displayText: speech,
