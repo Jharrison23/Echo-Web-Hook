@@ -70,7 +70,7 @@ function sendMessage()
                  req.body.result.parameters.echoText ? 
                  req.body.result.parameters.echoText : "Seems like some problem. Speak again."
   
-    
+    console.log("we in here");
     // Pushes the text from the user to the firebase database
     // pushes into the the AnaBot -> Messages table.
 
