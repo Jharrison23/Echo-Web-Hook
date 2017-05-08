@@ -3,7 +3,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const restService = express();
+const app = express();
 
 var firebase = require('firebase-admin');
 
@@ -20,9 +20,7 @@ var ref = firebase.database().ref('EchoBot');
 
 var messagesRef = ref.child('Users');
 
-var userName = req.body.result.parameters.userName;
 
-console.log(userName);
 
 // Method which returns the key, reference string, and the logs in the database
  ref.once('value')
@@ -33,18 +31,36 @@ console.log(userName);
         });
 
 
-restService.use(bodyParser.urlencoded({
+app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-restService.use(bodyParser.json());
 
-restService.post('/myecho', function(req, res) {
+
+
+
+app.use(bodyParser.json());
+
+
+app.post('/myecho', function(req, res) {
+    
     var speech = req.body.result && req.body.result.parameters && 
                  req.body.result.parameters.echoText ? 
                  req.body.result.parameters.echoText : "Seems like some problem. Speak again."
-  
+
+
     
+    
+    
+    var name = req.body.result && req.body.result.parameters && 
+                 req.body.result.parameters.userName ? 
+                 req.body.result.parameters.userName : "Seems like I dont have your name. Speak again."
+  console.log(name);
+
+    
+
+
+
     // Pushes the text from the user to the firebase database
     // pushes into the the AnaBot -> Messages table.
 
@@ -74,7 +90,7 @@ restService.post('/myecho', function(req, res) {
 function sendMessage()
 {
     console.log("we out here");
-    restService.post('/myecho', function(req, res) {
+    app.post('/myecho', function(req, res) {
     var speech = req.body.result && req.body.result.parameters && 
                  req.body.result.parameters.echoText ? 
                  req.body.result.parameters.echoText : "Seems like some problem. Speak again."
@@ -103,6 +119,6 @@ function sendMessage()
 }
 
 
-restService.listen((process.env.PORT || 8000), function() {
+app.listen((process.env.PORT || 8000), function() {
     console.log("Server up and listening");
 });
