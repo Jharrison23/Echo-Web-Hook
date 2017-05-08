@@ -37,19 +37,19 @@ app.use(bodyParser.urlencoded({
 
 
 
-
+console.log('12345678');
 
 app.use(bodyParser.json());
 
 
 app.post('/myecho', function(req, res) {
     
-
+    console.log("fjklsdajflksja");
 
 
     if(name == req.body.result.parameters.userName)
     {
-       
+       console.log("hello world");
         //var reference = messagesRef.child(name.toString());
     
         var speech = req.body.result && req.body.result.parameters && 
