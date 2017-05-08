@@ -20,7 +20,7 @@ var ref = firebase.database().ref('EchoBot');
 
 var messagesRef = ref.child('Users');
 
-
+var currentUser;
 
 // Method which returns the key, reference string, and the logs in the database
  ref.once('value')
@@ -47,7 +47,7 @@ app.post('/myecho', function(req, res) {
 
 
 
-    if(name == req.body.result.parameters.userName)
+    if(currentUser == req.body.result.parameters.userName)
     {
        
         //var reference = messagesRef.child(name.toString());
@@ -64,12 +64,12 @@ app.post('/myecho', function(req, res) {
         // .push creates a push key, the push key shows up as the weird string
         // under messages looks like an id, push keys are critical to firebase, 
         // theyre like time stamps with alot of randomness to avoid collision
-        messagesRef.child(String(name)).push({
+        messagesRef.child(currentUser).push({
             UserSent: speech
         });
 
 
-        messagesRef.child(String(name)).push({
+        messagesRef.child(currentUser).push({
             ServerSent: "Server " + speech
         });
 
@@ -87,13 +87,16 @@ app.post('/myecho', function(req, res) {
 var name = req.body.result && req.body.result.parameters && 
                  req.body.result.parameters.userName ? 
                  req.body.result.parameters.userName : "Seems like I dont have your name. Speak again."
-  console.log(name);
+  console.log("The name is: " + name);
 
  messagesRef.push({
         UserName: name
      });
 
 
+    currentUser = String(name);
+
+    console.log("current user" + currentUser);
     return res.json({
         speech: name,
         displayText: speech,
