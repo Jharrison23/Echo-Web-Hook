@@ -18,7 +18,11 @@ firebase.initializeApp({
 var ref = firebase.database().ref('EchoBot');
 
 
-var messagesRef = ref.child('User Speech');
+var messagesRef = ref.child('Users');
+
+var userName = req.body.result.parameters.userName;
+
+console.log(userName);
 
 // Method which returns the key, reference string, and the logs in the database
  ref.once('value')
