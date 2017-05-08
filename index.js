@@ -49,8 +49,11 @@ app.get('/myecho', function(req, res)
                  req.body.result.parameters.userName : "Seems like I dont have your name. Speak again."
   console.log(name);
 
+ messagesRef.push({
+        UserName: name
+    });
 
-  
+
 });
 
 
