@@ -55,7 +55,7 @@ app.post('/myecho', function(req, res)
 
 
     return res.json({
-        speech: "name " + name,
+        speech: name,
         displayText: speech,
         source: 'echo-web-hook'
         
