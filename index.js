@@ -42,15 +42,6 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 
-app.post('/myecho', function(req, res)
-{
-
-
- v
-});
-
-
-
 app.post('/myecho', function(req, res) {
     
 
@@ -85,7 +76,6 @@ app.post('/myecho', function(req, res) {
         UserSent: speech
     });
 
-    sendMessage();
 
     messagesRef.push({
         ServerSent: "Server " + speech
@@ -126,37 +116,6 @@ var name = req.body.result && req.body.result.parameters &&
 
 });
 
-
-function sendMessage()
-{
-    console.log("we out here");
-    app.post('/myecho', function(req, res) {
-    var speech = req.body.result && req.body.result.parameters && 
-                 req.body.result.parameters.echoText ? 
-                 req.body.result.parameters.echoText : "Seems like some problem. Speak again."
-  
-    console.log("we in here");
-    // Pushes the text from the user to the firebase database
-    // pushes into the the AnaBot -> Messages table.
-
-   // .push creates a push key, the push key shows up as the weird string
-   // under messages looks like an id, push keys are critical to firebase, 
-   // theyre like time stamps with alot of randomness to avoid collision
-    messagesRef.push({
-        UserSent: "second message"
-    });
-
-    sendMessage();
-
-    return res.json({
-        speech: "second message",
-       // displayText: speech,
-        source: 'echo-web-hook'
-        
-    });
-
-});
-}
 
 
 app.listen((process.env.PORT || 8000), function() {
