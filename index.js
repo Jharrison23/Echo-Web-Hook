@@ -50,10 +50,10 @@ app.post('/myecho', function(req, res) {
     if(name == req.body.result.parameters.userName)
     {
        
+        var reference = messagesRef.child(name.toString());
+    
 
-
-
-    var speech = req.body.result && req.body.result.parameters && 
+        var speech = req.body.result && req.body.result.parameters && 
                  req.body.result.parameters.echoText ? 
                  req.body.result.parameters.echoText : "Seems like some problem. Speak again."
 
@@ -66,27 +66,27 @@ app.post('/myecho', function(req, res) {
 
 
 
-    // Pushes the text from the user to the firebase database
-    // pushes into the the AnaBot -> Messages table.
+        // Pushes the text from the user to the firebase database
+        // pushes into the the AnaBot -> Messages table.
 
-   // .push creates a push key, the push key shows up as the weird string
-   // under messages looks like an id, push keys are critical to firebase, 
-   // theyre like time stamps with alot of randomness to avoid collision
-    messagesRef.push({
-        UserSent: speech
-    });
+    // .push creates a push key, the push key shows up as the weird string
+    // under messages looks like an id, push keys are critical to firebase, 
+    // theyre like time stamps with alot of randomness to avoid collision
+        reference.push({
+            UserSent: speech
+        });
 
 
-    messagesRef.push({
-        ServerSent: "Server " + speech
-    });
+        reference.push({
+            ServerSent: "Server " + speech
+        });
 
-    return res.json({
-        speech: speech,
-        displayText: speech,
-        source: 'echo-web-hook'
-        
-    }); 
+        return res.json({
+            speech: speech,
+            displayText: speech,
+            source: 'echo-web-hook'
+            
+        }); 
 }
 
 
