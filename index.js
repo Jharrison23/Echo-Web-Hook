@@ -42,7 +42,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 
-app.get('/myecho', function(req, res)
+app.post('/myecho', function(req, res)
 {
  var name = req.body.result && req.body.result.parameters && 
                  req.body.result.parameters.userName ? 
@@ -51,6 +51,14 @@ app.get('/myecho', function(req, res)
 
  messagesRef.push({
         UserName: name
+     });
+
+
+    return res.json({
+        speech: "name " + name,
+        displayText: speech,
+        source: 'echo-web-hook'
+        
     });
 
 
