@@ -47,7 +47,7 @@ app.post('/myecho', function(req, res) {
 
 
 
-    if(currentUser == req.body.result.parameters.userName)
+    if(name == req.body.result.parameters.userName)
     {
        
         //var reference = messagesRef.child(name.toString());
@@ -87,16 +87,17 @@ app.post('/myecho', function(req, res) {
 var name = req.body.result && req.body.result.parameters && 
                  req.body.result.parameters.userName ? 
                  req.body.result.parameters.userName : "Seems like I dont have your name. Speak again."
-  console.log("The name is: " + name);
+  //console.log("The name is: " + name);
 
  messagesRef.push({
         UserName: name
      });
 
 
-    currentUser = String(name);
+    // currentUser = String(name);
 
-    console.log("current user" + currentUser);
+    // console.log("current user" + currentUser);
+    
     return res.json({
         speech: name,
         displayText: speech,
