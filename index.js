@@ -44,30 +44,24 @@ app.use(bodyParser.json());
 
 app.post('/myecho', function(req, res)
 {
- var name = req.body.result && req.body.result.parameters && 
-                 req.body.result.parameters.userName ? 
-                 req.body.result.parameters.userName : "Seems like I dont have your name. Speak again."
-  console.log(name);
-
- messagesRef.push({
-        UserName: name
-     });
 
 
-    return res.json({
-        speech: name,
-        displayText: speech,
-        source: 'echo-web-hook'
-        
-    });
-
-
+ v
 });
 
 
 
 app.post('/myecho', function(req, res) {
     
+
+
+
+    if(name == req.body.result.parameters.userName)
+    {
+       
+
+
+
     var speech = req.body.result && req.body.result.parameters && 
                  req.body.result.parameters.echoText ? 
                  req.body.result.parameters.echoText : "Seems like some problem. Speak again."
@@ -102,7 +96,33 @@ app.post('/myecho', function(req, res) {
         displayText: speech,
         source: 'echo-web-hook'
         
+    }); 
+}
+
+
+
+
+var name = req.body.result && req.body.result.parameters && 
+                 req.body.result.parameters.userName ? 
+                 req.body.result.parameters.userName : "Seems like I dont have your name. Speak again."
+  console.log(name);
+
+ messagesRef.push({
+        UserName: name
+     });
+
+
+    return res.json({
+        speech: name,
+        displayText: speech,
+        source: 'echo-web-hook'
+        
     });
+
+
+
+
+
 
 });
 
