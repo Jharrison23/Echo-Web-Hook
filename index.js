@@ -42,6 +42,19 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 
+app.get('/myecho', function(req, res)
+{
+ var name = req.body.result && req.body.result.parameters && 
+                 req.body.result.parameters.userName ? 
+                 req.body.result.parameters.userName : "Seems like I dont have your name. Speak again."
+  console.log(name);
+
+
+  
+});
+
+
+
 app.post('/myecho', function(req, res) {
     
     var speech = req.body.result && req.body.result.parameters && 
@@ -52,11 +65,7 @@ app.post('/myecho', function(req, res) {
     
     
     
-    var name = req.body.result && req.body.result.parameters && 
-                 req.body.result.parameters.userName ? 
-                 req.body.result.parameters.userName : "Seems like I dont have your name. Speak again."
-  console.log(name);
-
+   
     
 
 
