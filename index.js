@@ -64,12 +64,12 @@ app.post('/myecho', function(req, res) {
         // .push creates a push key, the push key shows up as the weird string
         // under messages looks like an id, push keys are critical to firebase, 
         // theyre like time stamps with alot of randomness to avoid collision
-        messagesRef.child(String(name)).push({
+        messagesRef.push({
             UserSent: speech
         });
 
 
-        messagesRef.child(String(name)).push({
+        messagesRef.push({
             ServerSent: "Server " + speech
         });
 
